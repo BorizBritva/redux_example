@@ -48,7 +48,7 @@ class Profile extends React.Component {
             return this.props.userPost[1].map((item, index) => {
 
                 return(
-                    <li className="postsList__point" key={index} id={item.id} onClick={this.props.createPostsList}>
+                    <li className="postsList__point" key={index} id={item.id} >
                         <PostsCard data={item} userId={userId} userName={`@${user}`}/>
                     </li>
                     )
