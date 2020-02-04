@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import {store} from '../../../store/store';
 import initialState from '../../../store/initialState';
 import addUserPost from '../../../actions/addUserPost';
+import createPostsList from '../../../actions/createCommentList';
 import ProfileCard from './profileCard';
 import PostsCard from '../../feed/postCard';
 
@@ -17,6 +18,7 @@ const mapStateToProps = (state = initialState) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addUserPost: bindActionCreators(addUserPost, dispatch),
+        createPostsList: bindActionCreators(createPostsList, dispatch)
     }
 }
 
@@ -25,6 +27,7 @@ class Profile extends React.Component {
     componentWillMount() {
 
         this.props.addUserPost(this.props.match.params.id);
+        this.props.addUserPost.bind(this);
     }
 
     showProfile() {
@@ -45,9 +48,9 @@ class Profile extends React.Component {
             return this.props.userPost[1].map((item, index) => {
 
                 return(
-                    <li className="postsList__point" key={index} data-posts-id={item}>
+                    <li className="postsList__point" key={index} id={item.id} onClick={this.props.createPostsList}>
                         <PostsCard data={item} userId={userId} userName={`@${user}`}/>
-                        </li>
+                    </li>
                     )
                 })
             }
