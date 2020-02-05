@@ -38,7 +38,7 @@ class Header extends React.Component {
                             <li className="navList__item">
                                 <Link to="/users">People</Link>
                             </li>
-                            <li className="navList__item" onClick={this.props.createUsersList}>
+                            <li className="navList__item">
                                 <Link to="/feed">Feed</Link>
                             </li>
                         </ul>
