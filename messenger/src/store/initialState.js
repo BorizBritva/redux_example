@@ -1,8 +1,9 @@
 const initialState = {
     users: [],
     posts: [],
-    comments: [],
-    userPost: [],
+    modal: {},
+    userPost: {},
+    modalStatus: false,
 }
 
 export default initialState;

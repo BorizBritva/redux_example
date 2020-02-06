@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import createPostsList from '../actions/createPostsList';
+import createCommentsList from '../actions/createCommentList';
 import {store} from '../store/store';
 import initialState from '../store/initialState';
 import PostsCard from '../modules/feed/postCard';
@@ -15,7 +16,8 @@ const mapStateToProps = (state = initialState) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createPostsList: bindActionCreators(createPostsList, dispatch)
+        createPostsList: bindActionCreators(createPostsList, dispatch),
+        createCommentsList: bindActionCreators(createCommentsList, dispatch),
     }
 }
 
@@ -39,7 +41,7 @@ class PostList extends React.Component {
             let userId = this.props.users[userID-1].id;
 
             return(
-                <li className="postsList__point" key={item} data-posts-id={item}>
+                <li className="postsList__point" key={item} data-posts-id={item} onClick={() => this.props.createCommentsList(item)}>
                     <PostsCard data={this.props.posts[indexElem]} userId={userId} userName={`@${userName}`}/>
                 </li>
             )

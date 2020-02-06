@@ -19,7 +19,8 @@ export default function rootReducers (state=initialState, action ) {
         case "GET_COMMENT_LIST":
         return {
             ...state,
-            comments: action.payload
+            modal: action.payload,
+            modalStatus: !state.modalStatus
         }
         break;
 
@@ -29,6 +30,12 @@ export default function rootReducers (state=initialState, action ) {
             userPost: action.payload
         }
         break;
+
+        case "CLOSE_MODAL":
+        return {
+            ...state,
+            modalStatus: !state.modalStatus
+        }
 
         default: return state;
     }
