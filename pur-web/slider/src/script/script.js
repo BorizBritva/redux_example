@@ -5,6 +5,7 @@ window.onload = () => {
         slidesNodes = document.querySelectorAll('.slider-line__slide'),
         arraLeft = document.querySelector('.arrow-left'),
         arraRight = document.querySelector('.arrow-right'),
+        dotsWrap = document.querySelector('.sliderDots'),
         sliderWidth = sliderWrap.offsetWidth,
         offsetLine = 0,
         step = 0,
