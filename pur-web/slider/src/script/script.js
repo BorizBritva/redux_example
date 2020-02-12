@@ -36,8 +36,8 @@ window.onload = () => {
         })
 
         createSliderList = () => {
-            let width = sliderWidth/3 - 10;
-            let offsetSlider = slidesBefore.length * sliderWidth/3;
+            let width = sliderWidth/3; // quantity slides
+            let offsetSlider = slidesBefore.length * width; // width replace sliderWidth/3
             step = width;
 
             slidesBefore.forEach((item, i) => {
@@ -56,7 +56,7 @@ window.onload = () => {
                 item.style.width = `${width}px`;
             })
 
-            sliderList.style.width = `${sliderList.children.length * sliderWidth}px`;
+            sliderList.style.width = `${sliderList.children.length * width}px`; // width replace sliderWidth
             sliderList.style.transform = `translateX(${-offsetSlider}px)`;
 
             offsetLine = Number(sliderList.style.transform.match(/[-\d]/g).join(''));
@@ -67,9 +67,7 @@ window.onload = () => {
 
         /*document.querySelectorAll('.before').forEach(item => {
             sliderList.append(item);
-        });
-
-        console.log(sliderList.children[9])*/
+        });*/
 
         slideToLeft = (step) => {
             let speed = offsetLine - step;
@@ -85,6 +83,22 @@ window.onload = () => {
             //console.log(offsetLine);
         }
 
+        updateSlider = (offset, slider, wrapWidth) => {
+
+            let difference = slider.offsetWidth - wrapWidth;
+            let slideWidth = slider.offsetWidth/slider.children.length;
+            let comparison = -(difference - slideWidth);
+
+            if (offset == comparison) {
+                offset = -((document.querySelectorAll('.before').length * slideWidth) - (slideWidth * 4)); // 4 - quantity slides + 1(ended slide)
+                slider.style.transform = `translateX(${offset}px)`;
+                /*document.querySelectorAll('.before').forEach(item => {
+                    slider.append(item);
+                });*/
+                offsetLine = offset;
+            }
+        }
+
         arraLeft.addEventListener('click', () => {
 
             let step = 10;
@@ -96,6 +110,7 @@ window.onload = () => {
                 } else {
                     clearInterval(timer);
                     counter = 0;
+                    updateSlider(offsetLine, sliderList, sliderWidth);
                     console.log(offsetLine);
                 }
             }, 1);
@@ -118,4 +133,5 @@ window.onload = () => {
             }, 1);
 
         })
+
 }
