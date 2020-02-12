@@ -59,31 +59,26 @@ window.onload = () => {
             sliderList.style.width = `${sliderList.children.length * width}px`; // width replace sliderWidth
             sliderList.style.transform = `translateX(${-offsetSlider}px)`;
 
-            offsetLine = Number(sliderList.style.transform.match(/[-\d]/g).join(''));
+            offsetLine = Number(sliderList.style.transform.match(/[-\d]/g).join(''));  // стоит поправить, для адаптива
 
         }
 
         createSliderList();
 
-        /*document.querySelectorAll('.before').forEach(item => {
-            sliderList.append(item);
-        });*/
-
         slideToLeft = (step) => {
             let speed = offsetLine - step;
             sliderList.style.transform = `translateX(${speed}px)`;
-            offsetLine = Number(sliderList.style.transform.match(/[-\d]/g).join(''));
+            offsetLine = Number(sliderList.style.transform.match(/[-\d]/g).join(''));  // стоит поправить, для адаптива
 
         }
 
         slideToRight = (step) => {
             let speed = offsetLine + step;
             sliderList.style.transform = `translateX(${speed}px)`;
-            offsetLine = Number(sliderList.style.transform.match(/[-\d]/g).join(''));
-            //console.log(offsetLine);
+            offsetLine = Number(sliderList.style.transform.match(/[-\d]/g).join(''));  // стоит поправить, для адаптива
         }
 
-        updateSlider = (offset, slider, wrapWidth) => {
+        updateSliderLeft = (offset, slider, wrapWidth) => {
 
             let difference = slider.offsetWidth - wrapWidth;
             let slideWidth = slider.offsetWidth/slider.children.length;
@@ -92,9 +87,19 @@ window.onload = () => {
             if (offset == comparison) {
                 offset = -((document.querySelectorAll('.before').length * slideWidth) - (slideWidth * 4)); // 4 - quantity slides + 1(ended slide)
                 slider.style.transform = `translateX(${offset}px)`;
-                /*document.querySelectorAll('.before').forEach(item => {
-                    slider.append(item);
-                });*/
+                offsetLine = offset;
+            }
+        }
+
+        updateSliderRight = (offset, slider, wrapWidth) => {
+
+            let difference = slider.offsetWidth - wrapWidth;
+            let slideWidth = slider.offsetWidth/slider.children.length;
+            let comparison = -(wrapWidth/3); // 3 -  quantity slides
+
+            if (offset == comparison) {
+                offset = -((document.querySelectorAll('.after').length + 1) * slideWidth); // 2 - quantity slides - 1(start slide)
+                slider.style.transform = `translateX(${offset}px)`;
                 offsetLine = offset;
             }
         }
@@ -110,8 +115,7 @@ window.onload = () => {
                 } else {
                     clearInterval(timer);
                     counter = 0;
-                    updateSlider(offsetLine, sliderList, sliderWidth);
-                    console.log(offsetLine);
+                    updateSliderLeft(offsetLine, sliderList, sliderWidth);
                 }
             }, 1);
 
@@ -128,7 +132,7 @@ window.onload = () => {
                 } else {
                     clearInterval(timer);
                     counter = 0;
-                    console.log(offsetLine);
+                    updateSliderRight(offsetLine, sliderList, sliderWidth);
                 }
             }, 1);
 
