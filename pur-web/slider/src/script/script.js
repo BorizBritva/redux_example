@@ -71,25 +71,49 @@ window.onload = () => {
 
         console.log(sliderList.children[9])*/
 
-        slideToLeft = (speed) => {
-            let step = offsetLine += speed;
-            sliderList.style.transform = `translateX(${step}px)`;
+        slideToLeft = (step) => {
+            let speed = offsetLine - step;
+            sliderList.style.transform = `translateX(${speed}px)`;
             offsetLine = Number(sliderList.style.transform.match(/[-\d]/g).join(''));
-            console.log(offsetLine);
+
+        }
+
+        slideToRight = (step) => {
+            let speed = offsetLine + step;
+            sliderList.style.transform = `translateX(${speed}px)`;
+            offsetLine = Number(sliderList.style.transform.match(/[-\d]/g).join(''));
+            //console.log(offsetLine);
         }
 
         arraLeft.addEventListener('click', () => {
 
-            let number = 0;
+            let step = 10;
 
             let timer = setInterval(function() {
-                if (counter < sliderWidth + 10) {
-                    slideToLeft(number);
-                    number-=1;
-                    counter+=43;
+                if (counter < sliderWidth/3) {
+                    slideToLeft(step);
+                    counter+=10;
                 } else {
                     clearInterval(timer);
                     counter = 0;
+                    console.log(offsetLine);
+                }
+            }, 1);
+
+        })
+
+        arraRight.addEventListener('click', () => {
+
+            let step = 10;
+
+            let timer = setInterval(function() {
+                if (counter < sliderWidth/3) {
+                    slideToRight(step);
+                    counter+=10;
+                } else {
+                    clearInterval(timer);
+                    counter = 0;
+                    console.log(offsetLine);
                 }
             }, 1);
 
