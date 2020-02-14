@@ -3,8 +3,8 @@ window.onload = () => {
     let sliderWrap = document.querySelector('.slider-line'),
         sliderList = document.querySelector('.slider-line__list'),
         slidesNodes = document.querySelectorAll('.slider-line__slide'),
-        arraLeft = document.querySelector('.arrow-left'),
-        arraRight = document.querySelector('.arrow-right'),
+        arrowLeft = document.querySelector('.arrow-left'),
+        arrowRight = document.querySelector('.arrow-right'),
         dotsWrap = document.querySelector('.sliderDots'),
         dotsActive = 0,
         sliderWidth = sliderWrap.offsetWidth,
@@ -124,15 +124,15 @@ window.onload = () => {
             }
         }
 
-        arraLeft.addEventListener('click', () => {
+        arrowRight.addEventListener('click', () => {
 
-            let step = 10;
+            let step = 20;
             let dots = document.querySelectorAll('.slider-dots');
 
-            let timer = setInterval(function() {
+            let timer = setInterval(() => {
                 if (counter < sliderWidth/3) {
                     slideToLeft(step);
-                    counter+=10;
+                    counter+=20;
                 } else {
 
                     clearInterval(timer);
@@ -153,15 +153,15 @@ window.onload = () => {
 
         })
 
-        arraRight.addEventListener('click', () => {
+        arrowLeft.addEventListener('click', () => {
 
-            let step = 10;
+            let step = 20;
             let dots = document.querySelectorAll('.slider-dots');
 
-            let timer = setInterval(function() {
+            let timer = setInterval(() => {
                 if (counter < sliderWidth/3) {
                     slideToRight(step);
-                    counter+=10;
+                    counter+=20;
                 } else {
                     clearInterval(timer);
                     dots[dotsActive].classList.remove('active-dots');
@@ -173,7 +173,7 @@ window.onload = () => {
                             dotsActive -= 1;
                             dots[dotsActive].classList.add('active-dots');
                     }
-                    
+
                     counter = 0;
                     updateSliderRight(offsetLine, sliderList, sliderWidth);
                 }
@@ -182,8 +182,47 @@ window.onload = () => {
         })
 
         document.querySelectorAll('.slider-dots').forEach( (item, i) => {
+            let step = 20;
+
             item.addEventListener('click', () => {
-                    console.log(`${offsetLine}, ${i}`);
+
+                    if (i > dotsActive) {
+
+                        let timer = setInterval(() => {
+                            if (counter < (i-dotsActive) * sliderWidth/3) {
+                                slideToLeft(step);
+                                counter+=20;
+                            } else {
+
+                                clearInterval(timer);
+                                counter = 0;
+                                updateSliderLeft(offsetLine, sliderList, sliderWidth);
+                                document.querySelectorAll('.slider-dots')[dotsActive].classList.remove('active-dots');
+                                document.querySelectorAll('.slider-dots')[i].classList.add('active-dots');
+                                dotsActive = i;
+                            }
+                        }, 1);
+                    }
+
+                    if (i < dotsActive) {
+
+                        let timer = setInterval(() => {
+                            if (counter < (dotsActive-i) * sliderWidth/3) {
+                                slideToRight(step);
+                                counter+=20;
+                            } else {
+
+                                clearInterval(timer);
+                                counter = 0;
+                                updateSliderLeft(offsetLine, sliderList, sliderWidth);
+                                document.querySelectorAll('.slider-dots')[dotsActive].classList.remove('active-dots');
+                                document.querySelectorAll('.slider-dots')[i].classList.add('active-dots');
+                                dotsActive = i;
+                            }
+                        }, 1);
+                    }
+
+
             })
         })
 
