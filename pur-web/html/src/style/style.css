@@ -14,3 +14,102 @@ html, body {
     position: relative;
     box-sizing: border-box;
 }
+
+.container {
+    max-width: 1270px;
+    padding: 0px 70px;
+    margin: auto;
+    position: relative;
+}
+
+.first-block {
+    background: url('../assets/one-fone.png') left center no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+.menu {
+    font-family: Dosis;
+    color: #2f1946;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px 0px;
+    position: relative;
+}
+
+.menu__burger {
+    margin-left: 20px;
+    height: 5px;
+    width: 30px;
+    background-color: #e22028;
+    position: relative;
+    border-radius: 10px;
+}
+
+.menu__burger::before, .menu__burger::after {
+    content: "";
+    height: 5px;
+    width: 100%;
+    background-color: #e22028;
+    position: absolute;
+    border-radius: 10px;
+    left: 0px;
+}
+
+.menu__burger::before {
+    bottom: 10px;
+}
+
+.menu__burger::after {
+    top: 10px;
+}
+
+.logo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+}
+
+.project-title {
+    font-family: Dosis;
+    font-size: 80px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: #2f1946;
+}
+
+.btnWrap {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 90px;
+}
+
+.btnGetStart {
+    padding: 13px;
+    border-radius: 40px;
+    border: 1px solid #2f1946;
+    display: inline-block;
+}
+.btnGetStart button {
+    border: none;
+    width: 163px;
+    color: white;
+    font-family: Dosis;
+    font-weight: bold;
+    background-color: #2f1946;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.btnGetStart button::after {
+    content: url('../assets/arrow-pointing-to-right.png');
+    margin-left: 15px;
+}
