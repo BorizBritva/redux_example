@@ -23,7 +23,7 @@ html, body {
 }
 
 .first-block {
-    background: url('../assets/one-fone.png') left center no-repeat;
+    background: url('../assets/one-fone.png') center no-repeat;
     background-size: cover;
     width: 100%;
 }
@@ -169,4 +169,50 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.welcom__wrap {
+    padding-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.weclome__name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcom__name {
+    font-family: Dosis;
+    font-size: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: #2f1946;
+}
+
+.welcom__img {
+    margin-right: 15px;
+}
+
+.welcome__blockquote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Dosis;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #2f1946;
+}
+
+.welcome__blockquote cite {
+    text-align: right;
+    font-family: Dosis;
+    font-size: 30px;
+    font-weight: bold;
+    color: #e44254;
 }
